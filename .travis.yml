@@ -21,7 +21,7 @@ script:
   - ./hooks/build.sh
 
 after_success:
-  - ./hooks/list.sh
+  - ./hooks/upload.sh
 
 branches:
   only:
