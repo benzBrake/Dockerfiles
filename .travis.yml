@@ -11,11 +11,16 @@ env:
       TR_SETTINGS=settings-pt.json
 
 sudo: required
+
+addons:
+  apt:
+    update: true
   
 services:
   - docker
 
 before_script:
+  - sudo apt-get -y install perl
   - chmod +x ./hooks/*.sh
 script:
   - ./hooks/build.sh
