@@ -3,7 +3,8 @@ env:
   global:
     - MAINTAINER="Ryan Lieu<github-benzBrake@woai.ru>"
   matrix:
-    - DOCKER_BUILD=benzbrake/transmission:bt
+    - TAG_LATEST=true
+      DOCKER_BUILD=benzbrake/transmission:bt
       BUILD_DIRECTORY=transmission
       TR_SETTINGS=settings.json
     - DOCKER_BUILD=benzbrake/transmission:pt
