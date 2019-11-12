@@ -16,7 +16,6 @@ services:
   - docker
 
 before_script:
-  - perlbrew use $(perlbrew list | head -n1 | awk '{print $1}')
   - chmod +x ./hooks/*.sh
 script:
   - ./hooks/build.sh
