@@ -4,10 +4,12 @@ env:
     - MAINTAINER="Ryan Lieu<github-benzBrake@woai.ru>"
   matrix:
     - TAG_LATEST=true
-      DOCKER_BUILD=benzbrake/transmission:bt
+      DOCKER_REPO=benzbrake/transmission
+      DOCKER_TAG=bt
       BUILD_DIRECTORY=transmission
       TR_SETTINGS=settings.json
-    - DOCKER_BUILD=benzbrake/transmission:pt
+    - DOCKER_REPO=benzbrake/transmission
+      DOCKER_TAG=pt
       BUILD_DIRECTORY=transmission
       TR_SETTINGS=settings-pt.json
 
