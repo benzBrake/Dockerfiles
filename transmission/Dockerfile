@@ -8,7 +8,7 @@ RUN set -ex && \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories &&\
     apk add --update --no-cache transmission-daemon transmission-cli su-exec && \
     mv /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
-    TWC_VERSION=$(curl -sX GET "https://api.github.com/repos/ronggang/transmission-web-control/releases/latest" | awk '/tag_name/{print $4;exit}' FS='[""]') && \
+    TWC_VERSION=$(curl -s "https://github.com/ronggang/transmission-web-control/releases/latest" | perl -e 'while($_=<>){ /\/tag\/(.*)\">redirected/; print $1;}') && \
     curl -sSL https://github.com/ronggang/transmission-web-control/archive/${TWC_VERSION}.zip -o /tmp/twc.zip && \
     cd /tmp && \
     unzip twc.zip &&\
