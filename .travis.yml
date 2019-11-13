@@ -15,6 +15,10 @@ env:
       DOCKER_TAG=3.10
       TAG_LATEST=true
       BUILD_DIRECTORY=alpine/3.10
+      BUILD_ARGS_FILE=build_args_pt
+    - DOCKER_REPO=benzbrake/alpine
+      DOCKER_TAG=3.9
+      BUILD_DIRECTORY=alpine/3.9
 
 sudo: required
   
