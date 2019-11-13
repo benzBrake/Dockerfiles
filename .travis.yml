@@ -3,14 +3,18 @@ env:
   global:
     - MAINTAINER="Ryan Lieu<github-benzBrake@woai.ru>"
   matrix:
-    - TAG_LATEST=true
-      DOCKER_REPO=benzbrake/transmission
+    - DOCKER_REPO=benzbrake/transmission
       DOCKER_TAG=bt
+      TAG_LATEST=true
       BUILD_DIRECTORY=transmission
     - DOCKER_REPO=benzbrake/transmission
       DOCKER_TAG=pt
       BUILD_DIRECTORY=transmission
       BUILD_ARGS_FILE=build_args_pt
+    - DOCKER_REPO=benzbrake/alpine
+      DOCKER_TAG=3.10
+      TAG_LATEST=true
+      BUILD_DIRECTORY=alpine/3.10
 
 sudo: required
   
