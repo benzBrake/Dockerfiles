@@ -25,6 +25,9 @@ env:
     - DOCKER_REPO=benzbrake/alpine
       DOCKER_TAG=3.7
       BUILD_DIRECTORY=alpine/3.7
+    - DOCKER_REPO=benzbrake/pgyvpn
+      DOCKER_TAG=latest
+      BUILD_DIRECTORY=pgyvpn
 
 sudo: required
   
