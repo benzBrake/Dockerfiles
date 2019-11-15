@@ -47,9 +47,5 @@ after_success:
   - if [[ "$TRAVIS_BRANCH" = "develop" ]]; then ./hooks/list.sh ; fi
   - if [[ "$TRAVIS_BRANCH" = "master" ]]; then ./hooks/upload.sh ; fi
 
-branches:
-  only:
-    - master
-
 notifications:
   email: false
