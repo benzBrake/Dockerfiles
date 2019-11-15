@@ -28,6 +28,9 @@ env:
     - DOCKER_REPO=benzbrake/pgyvpn
       DOCKER_TAG=latest
       BUILD_DIRECTORY=pgyvpn
+    - DOCKER_REPO=benzbrake/cloud-torrent
+      DOCKER_TAG=latest
+      BUILD_DIRECTORY=cloud-torrent
 
 sudo: required
   
@@ -41,7 +44,8 @@ script:
   - ./hooks/build.sh
 
 after_success:
-  - ./hooks/upload.sh
+  - if [[ "$TRAVIS_BRANCH" = "develop" ]]; then ./hooks/list.sh ; fi
+  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then ./hooks/upload.sh ; fi
 
 branches:
   only:
