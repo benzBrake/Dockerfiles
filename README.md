@@ -1,5 +1,6 @@
 # Dockerfiles
-- Alpine
+- alpine
+- cloud-torrent
 - pgyvpn
 - transmission
 
