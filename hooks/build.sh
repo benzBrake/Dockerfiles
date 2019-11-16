@@ -12,5 +12,3 @@ docker build -t ${DOCKER_REPO}:${DOCKER_TAG} ${BUILD_ARGS} ${BUILD_DIRECTORY}
 if [[ ${TAG_LATEST} = "true" ]]; then
     docker tag ${DOCKER_REPO}:${DOCKER_TAG} ${DOCKER_REPO}:latest
 fi
-# List image
-docker images

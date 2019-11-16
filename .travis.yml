@@ -36,7 +36,7 @@ script:
   - if [[ -f ${BUILD_DIRECTORY}/build.sh ]]; then bash ${BUILD_DIRECTORY}/build.sh; else ./hooks/build.sh; fi
 
 after_success:
-  - if [[ "$TRAVIS_BRANCH" = "develop" ]]; then ./hooks/list.sh ; fi
+  - ./hooks/list.sh
   - if [[ "$TRAVIS_BRANCH" = "master" ]]; then ./hooks/upload.sh ; fi
 
 notifications:
