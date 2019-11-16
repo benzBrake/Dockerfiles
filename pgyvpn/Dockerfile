@@ -6,7 +6,7 @@ ADD entrypoint.sh /data/
 RUN \
 	set -ex && \
 	apk --update --no-cache add rpm bash expect libc6-compat libgcc libstdc++ && \
-	curl -SL "https://pgy.oray.com/package/dl?id=42&os=Ubuntu%20Linux(X86_64)" -o /tmp/pygvpn.rpm && \
+	curl -SL "https://pgy.oray.com/package/dl?id=42&os=Redhat%20/%20CentOS%20Linux(X86_64)" -o /tmp/pygvpn.rpm && \
 	rpm --nodeps -i /tmp/pygvpn.rpm && \
 	rm -f /tmp/pygvpn.rpm && \
 	apk del rpm bash && \
