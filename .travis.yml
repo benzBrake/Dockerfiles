@@ -12,19 +12,8 @@ env:
       BUILD_DIRECTORY=transmission
       BUILD_ARGS_FILE=build_args_pt
     - DOCKER_REPO=benzbrake/alpine
-      DOCKER_TAG=3.10
-      TAG_LATEST=true
-      BUILD_DIRECTORY=alpine/3.10
-      BUILD_ARGS_FILE=build_args_pt
-    - DOCKER_REPO=benzbrake/alpine
-      DOCKER_TAG=3.9
-      BUILD_DIRECTORY=alpine/3.9
-    - DOCKER_REPO=benzbrake/alpine
-      DOCKER_TAG=3.8
-      BUILD_DIRECTORY=alpine/3.8
-    - DOCKER_REPO=benzbrake/alpine
-      DOCKER_TAG=3.7
-      BUILD_DIRECTORY=alpine/3.7
+      TAG_SUBDIR=true
+      TAG_LATEST=3.10
     - DOCKER_REPO=benzbrake/pgyvpn
       DOCKER_TAG=latest
       BUILD_DIRECTORY=pgyvpn
@@ -41,7 +30,9 @@ before_script:
   - chmod +x ./hooks/*.sh
 
 script:
-  - ./hooks/build.sh
+  - if [[ -z ${BUILD_DIRECTORY} ]]; then exit 1; fi
+  - if [[ -z ${DOCKER_REPO} ]]; then exit 1; fi
+  - if [[ -f ${BUILD_DIRECTORY}/build.sh ]]; then bash ${BUILD_DIRECTORY}/build.sh; else ./hooks/build.sh; fi
 
 after_success:
   - if [[ "$TRAVIS_BRANCH" = "develop" ]]; then ./hooks/list.sh ; fi
