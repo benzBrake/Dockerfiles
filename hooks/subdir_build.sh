@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+if [[ "$TRAVIS_BRANCH" != "master" ]]; then
+    set -x
+fi
 # 去末尾 /
 BUILD_DIRECTORY=$(echo ${BUILD_DIRECTORY} | sed "s#/*\$##")
 # 列表目录
@@ -16,3 +19,4 @@ for SUB_DIR in ${SUB_DIRS//\/\//\/}; do
         docker tag ${DOCKER_REPO}:${tag} ${DOCKER_REPO}:latest
     fi
 done
+set +x
