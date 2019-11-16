@@ -32,7 +32,6 @@ before_script:
 script:
   - if [[ -z ${BUILD_DIRECTORY} ]]; then exit 1; fi
   - if [[ -z ${DOCKER_REPO} ]]; then exit 1; fi
-  - if [[ -z ${DOCKER_TAG} ]]; then DOCKER_TAG=latest; fi
   - if [[ -f ${BUILD_DIRECTORY}/build.sh ]]; then bash ${BUILD_DIRECTORY}/build.sh; else ./hooks/build.sh; fi
 
 after_success:
