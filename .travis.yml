@@ -3,23 +3,18 @@ env:
   global:
     - MAINTAINER="Ryan Lieu<github-benzBrake@woai.ru>"
   matrix:
-    - DOCKER_REPO=benzbrake/transmission
-      TAG_LATEST=true
+    - TAG_LATEST=true
       DOCKER_TAG=bt
       TAG_LATEST=true
       BUILD_DIRECTORY=transmission
-    - DOCKER_REPO=benzbrake/transmission
-      DOCKER_TAG=pt
+    - DOCKER_TAG=pt
       BUILD_DIRECTORY=transmission
       BUILD_ARGS_FILE=build_args_pt
-    - DOCKER_REPO=benzbrake/alpine
-      TAG_SUBDIR=true
+    - TAG_SUBDIR=true
       TAG_LATEST=3.10
       BUILD_DIRECTORY=alpine
-    - DOCKER_REPO=benzbrake/pgyvpn
-      BUILD_DIRECTORY=pgyvpn
-    - DOCKER_REPO=benzbrake/cloud-torrent
-      BUILD_DIRECTORY=cloud-torrent
+    - BUILD_DIRECTORY=pgyvpn
+    - BUILD_DIRECTORY=cloud-torrent
 
 sudo: required
   
@@ -30,8 +25,9 @@ before_script:
   - chmod +x ./hooks/*.sh
 
 script:
+  - if [[ -z ${DOCKER_USERNAME} ]]; then exit 1; fi
   - if [[ -z ${BUILD_DIRECTORY} ]]; then exit 1; fi
-  - if [[ -z ${DOCKER_REPO} ]]; then exit 1; fi
+  - if [[ -z ${DOCKER_REPO} ]]; then DOCKER_REPO="${DOCKER_USERNAME}/${BUILD_DIRECTORY}"; fi
   - if [[ -f ${BUILD_DIRECTORY}/build.sh ]]; then bash ${BUILD_DIRECTORY}/build.sh; else ./hooks/build.sh; fi
 
 after_success:
