@@ -10,6 +10,6 @@ for file in ${SUB_FILES//\/\//\/}; do
     docker build -t ${DOCKER_REPO}:${tag} ${file}
     if [[ ${tag} = ${TAG_LATEST} ]]; then
         # 打 latest 标签
-        docker tag ${DOCKER_REPO}:${tag} latest
+        docker tag ${DOCKER_REPO}:${tag} ${DOCKER_REPO}:latest
     fi
 done
