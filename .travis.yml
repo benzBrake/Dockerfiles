@@ -14,6 +14,7 @@ env:
     - DOCKER_REPO=benzbrake/alpine
       TAG_SUBDIR=true
       TAG_LATEST=3.10
+      BUILD_DIRECTORY=alpine
     - DOCKER_REPO=benzbrake/pgyvpn
       DOCKER_TAG=latest
       BUILD_DIRECTORY=pgyvpn
