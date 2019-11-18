@@ -1,14 +1,8 @@
 FROM benzbrake/alpine as builder
 WORKDIR /
 ARG BUILD_VERSION="latest"
-RUN set -ex && \
-    apk add --update --no-cache wget && \
-    CURL_LINK="https://github.com$(curl -sL -O - https://github.com/q3aql/aria2-static-builds/releases/${BUILD_VERSION} | grep "aria2-.*-linux-gnu-64bit-build1.tar.bz2" | grep "<a" | awk -F '"' '{print $2}')" && \
-    wget ${CURL_LINK} && \
-    bzip2 -d aria2*.bz2 && \
-    tar xf aria2*.tar && \
-    rm -rf aria2*.tar && \
-    mv aria2* aria2
+ADD download_aria2.sh
+RUN chmod +x build_aria2.sh && /download_aria2.sh
 
 FROM benzbrake/alpine
 LABEL maintainer="Ryan Lieu <github-benzBrake@woai.ru>"
