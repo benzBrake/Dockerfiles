@@ -2,7 +2,7 @@ FROM benzbrake/alpine as builder
 WORKDIR /
 ARG BUILD_VERSION="latest"
 ADD download_aria2.sh /
-RUN chmod +x build_aria2.sh && /download_aria2.sh
+RUN chmod +x download_aria2.sh && /download_aria2.sh
 
 FROM benzbrake/alpine
 LABEL maintainer="Ryan Lieu <github-benzBrake@woai.ru>"
