@@ -7,9 +7,9 @@ function prep ()
 
 # 从 REPO 读取 TAG
 function get_tags_from_git() {
-    if [[ ! -z ${GIT_REPO} ]]; then
+    if [[ ! -z ${TAG_FROM_TAGS} ]]; then
         rm -rf /tmp/git 2>&1 > /dev/null
-        git clone ${GIT_REPO} /tmp/git 2>&1 > /dev/null
+        git clone ${TAG_FROM_TAGS} /tmp/git 2>&1 > /dev/null
         cd /tmp/git 2>&1 > /dev/null
         git tags
         cd ~ 2>&1 > /dev/null
