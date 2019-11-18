@@ -11,8 +11,8 @@ function get_tags_from_git() {
         rm -rf /tmp/git 2>&1 > /dev/null
         git clone ${TAG_FROM_TAGS} /tmp/git 2>&1 > /dev/null
         cd /tmp/git 2>&1 > /dev/null
-        git tag
-        cd ~ 2>&1 > /dev/null
+        export EXT_TAGS=$(git tag)
+        cd - 2>&1 > /dev/null
         rm -rf /tmp/git 2>&1 > /dev/null
     fi
 }
@@ -43,7 +43,8 @@ else
     TAGS=${DOCKER_TAG-latest}
     # 从 REPO 读取 TAG
     if [[ ! -z ${TAG_FROM_TAGS} ]]; then
-        TAGS="${TAGS} $(get_tags_from_git ${TAG_FROM_TAGS})"
+        get_tags_from_git ${TAG_FROM_TAGS}
+        TAGS="${TAGS} $(EXT_TAGS)"
     fi
     # 导出 TAGS 变量
     TAGS=$(prep ${TAGS})
