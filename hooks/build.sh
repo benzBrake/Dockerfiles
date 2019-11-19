@@ -5,7 +5,7 @@ function get_tags_from_git() {
         rm -rf /tmp/git 2>&1 > /dev/null
         git clone ${TAG_FROM_TAGS} /tmp/git 2>&1 > /dev/null
         cd /tmp/git 2>&1 > /dev/null
-        EXT_TAGS="$(echo $(git tag) | sed 's#\n##g')"
+        EXT_TAGS="$(echo -e $(git tag) | sed 's#\n# #g')"
         cd - 2>&1 > /dev/null
         rm -rf /tmp/git 2>&1 > /dev/null
     fi
