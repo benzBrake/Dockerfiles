@@ -2,7 +2,7 @@ version: '3'
 
 services:
   aria2:
-    image: benzbrake/aria2:busybox
+    image: benzbrake/aria2
     container_name: aria2
     restart: always
     volumes:
