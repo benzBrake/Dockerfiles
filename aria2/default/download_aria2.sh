@@ -19,9 +19,17 @@ tar xf ${_FILENAME}.tar
 rm -f ${_FILENAME}.tar
 # Hack old version
 if [[ ! -d ${_FILENAME} ]]; then
-    mkdir /aria2
-    cp /usr/bin/aria2c /aria2/
-    cp /etc/ssl/certs/ca-certificates.crt /aria2/
+    if [[ -f /usr/bin/aria2c ]]; then
+        mkdir /aria2
+        cp /usr/bin/aria2c /aria2/
+        cp /etc/ssl/certs/ca-certificates.crt /aria2/
+    elif [[ -f /aria2c ]]; then
+        mkdir /aria2
+        cp /aria2c /aria2/
+        cp /ca-certificates.crt /aria2/
+    else
+        exit 1
+    fi
 else
     mv ${_FILENAME} /aria2
 fi 
