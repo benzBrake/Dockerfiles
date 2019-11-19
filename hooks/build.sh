@@ -31,7 +31,6 @@ else
         cd /tmp/git &> /dev/null
         EXT_TAGS="$(echo -e $(git tag 2>/dev/null) | sed 's#\n# #g')"
         cd - &> /dev/null
-        rm -rf /tmp/git &> /dev/null
     fi
     TAGS="${TAGS} ${EXT_TAGS}"
     # 遍历标签，分别构建
