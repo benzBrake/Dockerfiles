@@ -13,7 +13,7 @@ function extra_tags() {
     fi
 }
 if [[ "$TRAVIS_BRANCH" != "master" ]]; then
-    set -euxo pipefail
+    set -exo pipefail
 fi
 # 加载 build-args
 if [[ ! -z ${BUILD_ARGS_FILE} ]] && [[ -f ${BUILD_DIRECTORY}/${BUILD_ARGS_FILE} ]]; then
