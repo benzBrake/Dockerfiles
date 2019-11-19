@@ -12,13 +12,17 @@ else
     fi
     _LINK="https://github.com${_SLINK}"
 fi
-_FILENAME=$(echo ${_LINK} | sed "s#.*/##" )
-curl -sSL ${_LINK} -o ${_FILENAME}
-bzip2 -d ${_FILENAME}
-tar xf aria2*.tar
-rm -f aria2*.tar
-mv /aria2* /aria2
-ls -l /aria2
+_FILENAME=$(echo ${_LINK} | sed "s#.*/##" |  sed "s#.tar.bz2##")
+curl -sSL ${_LINK} -o ${_FILENAME}.tar.bz2
+bzip2 -d ${_FILENAME}.tar.bz2
+tar xf ${_FILENAME}.tar
+rm -f ${_FILENAME}.tar
+# Hack old version
+if [[ ! -d ${_FILENAME} ]]; then
+    mkdir /aria2
+    cp /usr/bin/aria2c /aria2/
+    cp /etc/ssl/certs/ca-certificates.crt /aria2/
+fi
 # Download Aira2ng
 curl -sSL https://github.com$(curl -sSL -o - https://github.com/mayswind/AriaNg/releases/latest | grep "AriaNg-[^/]*-AllInOne.zip" | grep "<a" | awk -F'"' '{print $2}') -o Aria2ng.zip
 unzip Aria2ng.zip
