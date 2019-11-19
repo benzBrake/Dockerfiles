@@ -1,12 +1,13 @@
 FROM benzbrake/alpine as builder
 WORKDIR /
 ARG BUILD_VERSION="latest"
+ADD ["tracker.sh", "aria2.conf", "entrypoint.sh", "/data/"]
 ADD download_aria2.sh /
 RUN chmod +x download_aria2.sh && /download_aria2.sh
 
 FROM benzbrake/alpine
 LABEL maintainer="Ryan Lieu <github-benzBrake@woai.ru>"
-ADD ["index.html", "tracker.sh", "aria2.conf", "entrypoint.sh", "/data/"]
+
 COPY --from=builder /aria2/aria2c /bin/aria2c
 COPY --from=builder /aria2/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 ENV TZ="Asia/Shanghai" PUID="1000" PGID="1000"
