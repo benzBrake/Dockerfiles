@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 # 从 REPO 读取 TAG
-function get_tags_from_git() {
-    if [[ ! -z ${TAG_FROM_TAGS} ]]; then
+function extra_tags() {
+     if [[ $# = 1 ]] ; then 
         rm -rf /tmp/git 2>&1 > /dev/null
-        git clone ${TAG_FROM_TAGS} /tmp/git 2>&1 > /dev/null
+        git clone ${1} /tmp/git 2>&1 > /dev/null
         cd /tmp/git 2>&1 > /dev/null
-        EXT_TAGS="$(echo -e $(git tag) | sed 's#\n# #g')"
+        git tag 2>/dev/null
         cd - 2>&1 > /dev/null
         rm -rf /tmp/git 2>&1 > /dev/null
+    else
+        exit 1
     fi
 }
 if [[ "$TRAVIS_BRANCH" != "master" ]]; then
-    set -x
+    set -euxo pipefail
 fi
 # 加载 build-args
 if [[ ! -z ${BUILD_ARGS_FILE} ]] && [[ -f ${BUILD_DIRECTORY}/${BUILD_ARGS_FILE} ]]; then
@@ -37,10 +39,9 @@ else
     TAGS=${DOCKER_TAG-latest}
     # 从 REPO 读取 TAG
     if [[ ! -z ${TAG_FROM_TAGS} ]]; then
-        get_tags_from_git ${TAG_FROM_TAGS}
+        EXT_TAGS=$(extra_tags ${TAG_FROM_TAGS})
         TAGS="${TAGS} ${EXT_TAGS}"
     fi
-    export TAGS
     # 遍历标签，分别构建
     for tag in "${TAGS}" ; do
         # 构建映像
