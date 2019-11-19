@@ -4,6 +4,7 @@ if [[ "$TRAVIS_BRANCH" != "master" ]]; then
 fi
 if [[ "${TRAVIS_BRANCH}" == "master" ]] && [[ ! -z ${DOCKER_USERNAME} ]] && [[ ! -z ${DOCKER_PASSWORD} ]]; then
     docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+    TAGS=${DOCKER_TAG-latest}
     if [[ ! -z ${TAG_FROM_TAGS} ]]; then
         cd /tmp/git &> /dev/null
         EXT_TAGS="$(echo -e $(git tag 2>/dev/null) | sed 's#\n# #g')"
