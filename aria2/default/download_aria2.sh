@@ -16,9 +16,6 @@ _FILENAME=$(echo ${_LINK} | sed "s#.*/##" )
 curl -sSL ${_LINK} -o ${_FILENAME}
 bzip2 -d aria2*.bz2
 tar xf aria2*.tar
-rm -rf aria2*.tar
-mv aria2* aria2
-chmod +x /aria2/aria2c
 # Download Aira2ng
 curl -sSL https://github.com$(curl -sSL -o - https://github.com/mayswind/AriaNg/releases/latest | grep "AriaNg-[^/]*-AllInOne.zip" | grep "<a" | awk -F'"' '{print $2}') -o Aria2ng.zip
 unzip Aria2ng.zip

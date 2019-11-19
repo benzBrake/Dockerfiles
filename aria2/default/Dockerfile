@@ -8,8 +8,8 @@ RUN chmod +x download_aria2.sh && /download_aria2.sh
 FROM benzbrake/alpine
 LABEL maintainer="Ryan Lieu <github-benzBrake@woai.ru>"
 
-COPY --from=builder /aria2/aria2c /bin/aria2c
-COPY --from=builder /aria2/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+COPY --from=builder /usr/bin/aria2c /bin/aria2c
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /data /data
 ENV TZ="Asia/Shanghai" PUID="1000" PGID="1000"
 RUN set -ex && \
