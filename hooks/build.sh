@@ -27,7 +27,7 @@ else
     # 从 REPO 读取 TAG
     if [[ ! -z ${TAG_FROM_TAGS} ]]; then
         rm -rf /tmp/git &> /dev/null
-        git clone ${1} /tmp/git &> /dev/null
+        git clone ${TAG_FROM_TAGS} /tmp/git &> /dev/null
         cd /tmp/git &> /dev/null
         EXT_TAGS="$(echo -e $(git tag 2>/dev/null) | sed 's#\n# #g')"
         cd - &> /dev/null
