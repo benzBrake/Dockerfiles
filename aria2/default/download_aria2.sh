@@ -22,7 +22,9 @@ if [[ ! -d ${_FILENAME} ]]; then
     mkdir /aria2
     cp /usr/bin/aria2c /aria2/
     cp /etc/ssl/certs/ca-certificates.crt /aria2/
-fi
+else
+    mv ${_FILENAME} /aria2
+fi 
 # Download Aira2ng
 curl -sSL https://github.com$(curl -sSL -o - https://github.com/mayswind/AriaNg/releases/latest | grep "AriaNg-[^/]*-AllInOne.zip" | grep "<a" | awk -F'"' '{print $2}') -o Aria2ng.zip
 unzip Aria2ng.zip
