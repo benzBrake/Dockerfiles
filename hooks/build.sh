@@ -51,7 +51,7 @@ else
         # 打 latest 标签
         if [[ ${tag} != "latest" ]]; then
             if [[ ${TAG_LATEST} = "true" ]] || [[ ${TAG_LATEST} = ${tag} ]]; then
-                docker tag ${DOCKER_REPO}:${DOCKER_TAG} ${DOCKER_REPO}:latest
+                docker tag ${DOCKER_REPO}:${tag} ${DOCKER_REPO}:latest
             fi
         fi
     done
