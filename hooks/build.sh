@@ -35,7 +35,7 @@ else
     fi
     TAGS="${TAGS} ${EXT_TAGS}"
     # 遍历标签，分别构建
-    for tag in "${TAGS}" ; do
+    for tag in ${TAGS}; do
         # 构建映像
         docker build -t ${DOCKER_REPO}:${tag} ${BUILD_ARGS} --build-arg BUILD_VERSION=${tag} ${BUILD_DIRECTORY}
         # 打 latest 标签
