@@ -1,17 +1,4 @@
 #!/usr/bin/env bash
-# 从 REPO 读取 TAG
-function extra_tags() {
-     if [[ $# = 1 ]] ; then 
-        rm -rf /tmp/git 2>&1 > /dev/null
-        git clone ${1} /tmp/git 2>&1 > /dev/null
-        cd /tmp/git 2>&1 > /dev/null
-        git tag 2>/dev/null
-        cd - 2>&1 > /dev/null
-        rm -rf /tmp/git 2>&1 > /dev/null
-    else
-        exit 1
-    fi
-}
 if [[ "$TRAVIS_BRANCH" != "master" ]]; then
     set -exo pipefail
 fi
@@ -39,9 +26,14 @@ else
     TAGS=${DOCKER_TAG-latest}
     # 从 REPO 读取 TAG
     if [[ ! -z ${TAG_FROM_TAGS} ]]; then
-        EXT_TAGS=$(extra_tags ${TAG_FROM_TAGS})
-        TAGS="${TAGS} ${EXT_TAGS}"
+        rm -rf /tmp/git &> /dev/null
+        git clone ${1} /tmp/git &> /dev/null
+        cd /tmp/git &> /dev/null
+        EXT_TAGS="$(echo -e $(git tag 2>/dev/null) | sed 's#\n# #g')"
+        cd - &> /dev/null
+        rm -rf /tmp/git &> /dev/null
     fi
+    TAGS="${TAGS} ${EXT_TAGS}"
     # 遍历标签，分别构建
     for tag in "${TAGS}" ; do
         # 构建映像
