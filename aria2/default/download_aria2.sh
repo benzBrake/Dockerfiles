@@ -14,8 +14,11 @@ else
 fi
 _FILENAME=$(echo ${_LINK} | sed "s#.*/##" )
 curl -sSL ${_LINK} -o ${_FILENAME}
-bzip2 -d aria2*.bz2
+bzip2 -d ${_FILENAME}
 tar xf aria2*.tar
+rm -f aria2*.tar
+mv /aria2* /aria2
+ls -l /aria2
 # Download Aira2ng
 curl -sSL https://github.com$(curl -sSL -o - https://github.com/mayswind/AriaNg/releases/latest | grep "AriaNg-[^/]*-AllInOne.zip" | grep "<a" | awk -F'"' '{print $2}') -o Aria2ng.zip
 unzip Aria2ng.zip
