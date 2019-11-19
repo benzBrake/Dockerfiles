@@ -44,7 +44,7 @@ else
     # 从 REPO 读取 TAG
     if [[ ! -z ${TAG_FROM_TAGS} ]]; then
         get_tags_from_git ${TAG_FROM_TAGS}
-        TAGS="${TAGS} $(EXT_TAGS)"
+        TAGS="${TAGS} ${EXT_TAGS}"
     fi
     # 导出 TAGS 变量
     TAGS=$(prep ${TAGS})
