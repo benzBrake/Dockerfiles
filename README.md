@@ -17,4 +17,4 @@ If you feel this image is useful, you can buy me a coffee
 Ant then, copy as you want.
 
 如果对你有帮助，不妨捐助 Ryan：
-![](tree/master/donate.jpg)
+![](donate.jpg)
