@@ -23,13 +23,14 @@ if [[ ${TAG_SUBDIR} = "true"  ]]; then
         fi
     done
 else
-    TAGS=${DOCKER_TAG-latest}
+    TAGS=${DOCKER_TAG}
     # 从 REPO 读取 TAG
     if [[ ! -z ${TAG_FROM_TAGS} ]]; then
         rm -rf /tmp/git &> /dev/null
         git clone ${TAG_FROM_TAGS} /tmp/git &> /dev/null
         cd /tmp/git &> /dev/null
         EXT_TAGS="$(echo -e $(git tag 2>/dev/null) | sed 's#\n# #g')"
+        TAG_LATEST="$(git describe --tags $(git rev-list --tags --max-count=1))"
         cd - &> /dev/null
     fi
     TAGS="${TAGS} ${EXT_TAGS}"
@@ -37,6 +38,7 @@ else
     for tag in ${TAGS}; do
         # 构建映像
         docker build -t ${DOCKER_REPO}:${tag} ${BUILD_ARGS} --build-arg BUILD_VERSION=${tag} ${BUILD_DIRECTORY}
+        echo "Building image: ${DOCKER_REPO}:${tag}"
         # 打 latest 标签
         if [[ ${tag} != "latest" ]]; then
             if [[ ${TAG_LATEST} = "true" ]] || [[ ${TAG_LATEST} = ${tag} ]]; then
