@@ -18,6 +18,9 @@ env:
     - DOCKER_REPO=benzbrake/aria2
       BUILD_DIRECTORY=aria2/default
       TAG_FROM_TAGS=https://github.com/q3aql/aria2-static-builds
+    - DOCKER_REPO=benzbrake/frps
+      BUILD_DIRECTORY=frp/server
+      TAG_FROM_TAGS=https://github.com/fatedier/frp
 
 sudo: required
   
