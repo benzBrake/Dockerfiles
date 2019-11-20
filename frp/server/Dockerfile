@@ -2,6 +2,7 @@ FROM docker.io/library/golang as build
 ARG BUILD_VERSION
 RUN mkdir -pv /go/src/github.com/fatedier
 RUN set -x \
+    && go get github.com/tools/godep \
     && mkdir -pv /go/src/github.com/fatedier \
     && cd /go/src/github.com/fatedier \
     && git clone https://github.com/fatedier/frp frp \
