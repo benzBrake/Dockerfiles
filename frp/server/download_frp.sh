@@ -16,6 +16,6 @@ _FILENAME=$(echo ${_LINK} | sed "s#.*/##")
 curl -sSL ${_LINK} -o ${_FILENAME}
 tar zxvf ${_FILENAME}
 _DIR=$(echo ${_FILENAME} | sed "s#.tar.gz##")
-cp _DIR/frps /usr/bin/frps
+cp ${_DIR}/frps /usr/bin/frps
 chmod +x /usr/bin/frps
 rm -rf ${_DIR} ${_FILENAME}
