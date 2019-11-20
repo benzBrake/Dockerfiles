@@ -12,7 +12,7 @@ else
     fi
     _LINK="https://github.com${_SLINK}"
 fi
-_FILENAME=$(echo ${_LINK} | sed sed "s#.*/##")
+_FILENAME=$(echo ${_LINK} | sed "s#.*/##")
 curl -sSL ${_LINK} -o ${_FILENAME}
 tar zxvf ${_FILENAME}
 _DIR=$(echo ${_FILENAME} | sed "s#.tar.gz##")
