@@ -46,7 +46,6 @@ else
     # 遍历标签，分别构建
     for tag in ${TAGS}; do
         # 构建映像
-        if [[ ]]
         docker build -t ${DOCKER_REPO}:${tag} ${BUILD_ARGS} --build-arg BUILD_VERSION=${tag} ${BUILD_DIRECTORY}
         echo "Building image: ${DOCKER_REPO}:${tag}"
         # 打 latest 标签
