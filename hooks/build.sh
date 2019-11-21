@@ -36,9 +36,9 @@ else
     TAGS="${TAGS} ${EXT_TAGS}"
     # 排除标签
     if [[ -f ${BUILD_DIRECTORY}/exclude_tags ]]; then
-        ex_tags=$(cat exclude_tags)
+        ex_tags=$(cat ${BUILD_DIRECTORY}/exclude_tags)
         if [[ ! -z ${ex_tags} ]]; then
-            for ex_tag in ${exclude_tags}; do
+            for ex_tag in ${ex_tags}; do
                 TAGS=$(echo ${TAGS} | sed "s#${ex_tag} # #")
             done
         fi
