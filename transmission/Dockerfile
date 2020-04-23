@@ -6,7 +6,7 @@ ENV TR_USERNAME="transmission" TR_PASSWORD="PEiktY3IEaeWluyS" TR_RPC_PORT="9091"
 ADD ["entrypoint.sh", "tracker.sh", "healthchek.sh", "${TR_SETTINGS}", "/data/"]
 RUN set -ex && \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories &&\
-    apk add --update --no-cache transmission-daemon transmission-cli su-exec && \
+    apk add --update --no-cache coreutils transmission-daemon transmission-cli su-exec && \
     mv /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
     TWC_VERSION=$(curl -s https://api.github.com/repos/ronggang/transmission-web-control/releases/latest | grep "tag_name" | cut -d \" -f 4) && \
     curl -sSL https://github.com/ronggang/transmission-web-control/archive/${TWC_VERSION}.zip -o /tmp/twc.zip && \

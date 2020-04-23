@@ -2,7 +2,7 @@
 ![](https://www.travis-ci.org/benzBrake/Dockerfiles.svg?branch=master)
 Ryan 编写的 Dockerfile 合集，采用 Travis CI 自动构建。
 ## Support Images and Tags | 支持的映像和版本
-- alpine:[3.7](alpine/3.7/Dockerfile),[3.8](alpine/3.8/Dockerfile),[3.9](alpine/3.9/Dockerfile),[3.10](alpine/3.10/Dockerfile)
+- alpine:[3.7](alpine/3.7/Dockerfile),[3.8](alpine/3.8/Dockerfile),[3.9](alpine/3.9/Dockerfile),[3.9](alpine/3.9/Dockerfile)
 - aria2:[latest](aria2/default/Dockefile)
 - cloud-torrent:[latest](cloud-torrent/Dockerfile)
 - pgyvpn:[latest](pgyvpn/Dockefile)
